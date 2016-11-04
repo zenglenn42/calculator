@@ -76,29 +76,99 @@
 </div>
 
 <script type="text/javascript">
+
+var calc = {
+    operators: ["+", "-", "/", "^"],
+    operator: "",
+    num: [],
+    num1: 0,
+    num2: 0,
+    operand: "",  /* character */
+    result:0,
+    init: function() {
+        this.result = 0;
+        this.operand = "";
+        this.operators = [];
+        this.num = [];
+        this.num1 = 0;
+        this.num2 = 0;
+    },
+    run: function() {
+        var numStr2 = this.num.join("");
+        this.num2 = parseInt(numStr2);
+        console.log("num2: " + this.num2);
+        switch(this.operator) {
+            case "plus":
+                this.result = this.num1 + this.num2;
+                console.log("num1" + this.num1);
+                console.log("num2" + this.num2);   
+                break;
+            case "minus":
+                this.result = this.num1 - this.num2;
+                break;
+            case "times":
+                this.result = this.num1 * this.num2;
+                break;
+            case "divide":
+                this.result = this.num1 / this.num2;
+                break;
+            case "power":
+                this.result = Math.pow(this.num1, this.num2);
+                break;
+            default: {
+                console.log("Illegal operator: ", operator);
+                break;
+            }
+        }
+        return this.result;
+    },
+    setOperator: function(operator) {
+        this.operator = operator;
+        var numStr = this.num.join("");
+        console.log(numStr);
+        this.num1 = parseInt(numStr);
+        console.log("debug", this.num1);
+        this.num = [];
+        console.log("debug", this.num1);
+    }
+}
+
 $(document).ready(function(){
 
      $(".number").on("click", function(){
         var temporary=($(this).val());
-        // temporary.element("h1");
-        // console.log(temporary);
-        // calc.num.push(temporary);
-        $("#firstNumber").append(temporary);
-        // console.log(temporary);
+        
+        if (calc.operator!==""){
+            $("#firstNumber").append(temporary);
+            calc.num.push(temporary);
+            console.log(temporary);    
+        } else{
+            $("#secondNumber").append(temporary);     
+        }
      });
 
      $(".operator").on("click", function(){
-        var temporary=($(this).val());
-        // console.log(temporary);
-        // calc.setOperator(temporary);
-        $("#operator").append(temporary);
+
+        var operatorQuery=($(this).val());
+        if(operatorQuery==="plus"){
+            $("#operator").append("+");    
+        } else if (operatorQuery==="minus"){
+            $("#operator").append("-");   
+        } else if (operatorQuery==="times"){
+            $("#operator").append("*");   
+        } else if (operatorQuery==="divide"){
+            $("#operator").append("/");   
+        } else if (operatorQuery==="power"){
+            $("#operator").append("^");   
+        }
+        calc.setOperator(operatorQuery);
+        console.log(operatorQuery);
      });
 
      $(".equal").on("click",function(){
         var temporary=($(this).val());
-        // console.log(temporary);
-        // calc.run(temporary);
-        $("#result").append(temporary);
+        calc.run(temporary);
+        $("#result").append(calc.run());
      });
 
      $("#buttonClear").on("click", function(){
@@ -106,7 +176,7 @@ $(document).ready(function(){
         $("#operator").empty();
         $("#firstNumber").empty();
         $("#secondNumber").empty();
-        // calc.init();
+        calc.init();
      });
 
 // Your code here...

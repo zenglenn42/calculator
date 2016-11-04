@@ -80,25 +80,33 @@ $(document).ready(function(){
 
      $(".number").on("click", function(){
         var temporary=($(this).val());
-        console.log(temporary);
-        calc.num.push(temporary);
+        // temporary.element("h1");
+        // console.log(temporary);
+        // calc.num.push(temporary);
+        $("#firstNumber").append(temporary);
         // console.log(temporary);
      });
 
      $(".operator").on("click", function(){
         var temporary=($(this).val());
-        console.log(temporary);
-        calc.setOperator(temporary);
+        // console.log(temporary);
+        // calc.setOperator(temporary);
+        $("#operator").append(temporary);
      });
 
      $(".equal").on("click",function(){
         var temporary=($(this).val());
-        console.log(temporary);
-        calc.run(temporary);
+        // console.log(temporary);
+        // calc.run(temporary);
+        $("#result").append(temporary);
      });
 
      $("#buttonClear").on("click", function(){
         $("#result").empty();
+        $("#operator").empty();
+        $("#firstNumber").empty();
+        $("#secondNumber").empty();
+        // calc.init();
      });
 
 // Your code here...

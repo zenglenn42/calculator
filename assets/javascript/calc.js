@@ -4,17 +4,6 @@ Simple webapp calculator.
 
 */
 
-// Function: toNum
-// Usage: var num = toNum(numArray);
-// ---------------------------------
-// Takes an array of numbers, joins them together, then
-// converts the resulting joined string to a number.
-
-function toNum(numArray) {
-	var numStr = numArray.join("");
-	num = parseInt(numStr);
-}
-
 // Usage:
 //
 //	10 + 23 = 33
@@ -31,7 +20,7 @@ function toNum(numArray) {
 //				// result = operand[0] [operator] operand[1]
 //	
 
-var calc {
+var calc = {
 	operators: ["+", "-", "/", "^"],
 	operator: "",
 	num: [],
@@ -48,7 +37,8 @@ var calc {
 		this.num2 = 0;
 	},
 	run: function() {
-		this.num2 = toNum(this.num);
+		var numStr2 = this.num.join("");
+		this.num2 = parseInt(numStr2);
 		switch(this.operator) {
 			case "plus":
 				this.result = this.num1 + this.num2;
@@ -65,7 +55,7 @@ var calc {
 			case "power":
 				this.result = Math.pow(this.num1, this.num2);
 				break;
-			default {
+			default: {
 				console.log("Illegal operator: ", operator);
 				break;
 			}
@@ -74,8 +64,38 @@ var calc {
 	},
 	setOperator: function(operator) {
 		this.operator = operator;
-		this.num1 = toNum(this.num);
+		var numStr = this.num.join("");
+		this.num1 = parseInt(numStr);
+		this.num = [];
+		console.log("debug", this.num1);
 	}
 }
 
+function unitTest() {
+	calc.init();
 
+	// 10
+
+	calc.num.push(1);
+	calc.num.push(0);
+	console.log("calc.num", calc.num);
+	// +
+
+	calc.setOperator("plus");
+	console.log("calc.operator", calc.operator);
+	console.log("calc.num1", calc.num1)
+
+	// 23
+
+	calc.num.push(2);	// num = [2];
+	calc.num.push(3);	// num = [2, 3];
+	console.log("calc.num", calc.num);
+
+	// =
+
+	result = calc.run(); // joinedNum = 23;
+	console.log("calc.num2", calc.num2);
+	console.log(result);
+}
+
+// unitTest();

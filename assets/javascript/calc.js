@@ -4,6 +4,17 @@ Simple webapp calculator.
 
 */
 
+// Function: toNum
+// Usage: var num = toNum(numArray);
+// ---------------------------------
+// Takes an array of numbers, joins them together, then
+// converts the resulting joined string to a number.
+
+function toNum(numArray) {
+	var numStr = numArray.join("");
+	num = parseInt(numStr);
+}
+
 // Usage:
 //
 //	10 + 23 = 33
@@ -22,10 +33,10 @@ Simple webapp calculator.
 
 var calc {
 	operators: ["+", "-", "/", "^"],
-	operator: "";
-	num: [];
-	num1: 0;
-	num2: 0;
+	operator: "",
+	num: [],
+	num1: 0,
+	num2: 0,
 	operand: "",  /* character */
 	result:0,
 	init: function() {
@@ -38,7 +49,7 @@ var calc {
 	},
 	run: function() {
 		this.num2 = toNum(this.num);
-		switch(operator) {
+		switch(this.operator) {
 			case "plus":
 				this.result = this.num1 + this.num2;
 				break;
@@ -56,16 +67,15 @@ var calc {
 				break;
 			default {
 				console.log("Illegal operator: ", operator);
+				break;
 			}
 		}
-	}
+		return this.result;
+	},
 	setOperator: function(operator) {
-		this.operator = strOperator;
+		this.operator = operator;
 		this.num1 = toNum(this.num);
 	}
 }
 
-function toNum(numArray) {
-	var numStr = numArray.join("");
-	num = parseInt(numStr);
-}
+

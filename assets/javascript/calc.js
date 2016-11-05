@@ -139,6 +139,7 @@ var calc = {
 			console.log("Unit tests failed. :-(");
 			console.log("Please investigate.");
 		}
+		return passed;
 	}
 }
 

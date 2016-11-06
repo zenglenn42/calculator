@@ -37,18 +37,18 @@ var calc = {
 	validOperators: ["plus", "minus", "times", "divide", "power"],
 	operator: "", // e.g., "plus"  The operator to use in the calculation.
 	num: [],
-	num1: 0,
-	num2: 0,
-	result:0,
+	num1: undefined,
+	num2: undefined,
+	result: undefined,
 	init: function() {
 		
 		// Initialize the state of the calc object to pristine form.
 
 		this.operator = "";
 		this.num = [];
-		this.num1 = 0;
-		this.num2 = 0;
-		this.result = 0;
+		this.num1 = undefined;
+		this.num2 = undefined;
+		this.result = undefined;
 	},
 	setOperator: function(operator) {
 
@@ -71,13 +71,26 @@ var calc = {
 			//     Sorry unary -1, you'll come with rev 2.0. ;-)
 
 			this.num1 = arrayToNum(this.num);
-			console.log("setOperator: ", this.num1);
+			console.log("setOperator: num1: ", this.num1);
+			console.log("setOperator: operator: ", this.operator);
 
 			// Reset num array so it's fresh to take on
 			// the second operand of (pushed) numbers.
 
 			this.num = [];
 		}
+	},
+	hasOperator: function() {
+		return (this.operator.length > 0);
+	},
+	hasResult: function() {
+		return (this.result !== undefined);
+	},
+	hasFirstNumber: function() {
+		return (!isNaN(this.num1));
+	},
+	hasBothNumbers: function() {
+		return (!isNaN(this.num1) && !isNaN(this.num2));
 	},
 	run: function() {
 
@@ -143,13 +156,13 @@ var calc = {
 	}
 }
 
-// Function: toNum
+// Function: arrayToNum
 // Usage: var num = arrayToNum(numArray);
 // --------------------------------------
 // Takes an array of numbers, joins them together, then
 // converts the resulting joined string to a number.
 //
-// e.g., [1, 2, 3] --> 123
+// e.g., [1, 2, 3] --> "123" --> 123
 
 function arrayToNum(numArray) {
 	var result = 0;

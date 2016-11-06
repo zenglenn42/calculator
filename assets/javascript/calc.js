@@ -21,14 +21,14 @@
 // calc.num.push(1);  			// calc.num = [1];
 // calc.num.push(0);  			// calc.num = [1, 0];
 //
-// calc.setOperator("plus"); 	// calc.operator = "plus"
-//								// calc.num1 = 10;
+// calc.setOperator("plus"); 		// calc.operator = "plus"
+//					// calc.num1 = 10;
 //
 // calc.num.push(2);			// calc.num = [2];
 // calc.num.push(3);			// calc.num = [2, 3];
 //
 // result = calc.run(); 		// calc.num2 = 23
-//								// calc.result = 33;
+//					// calc.result = 33;
 //
 // NB: It is important to run calc.init() inbetween separate
 //     calculations to clear out numbers, etc from the past.	

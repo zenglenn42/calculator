@@ -20,7 +20,7 @@ pattern depicted below.
     Model              View                          Controller   v
 +-------------+  +----------------+         +-----------------------------------+
 | calc object |  | calc user i/f  | updates | $(document).ready(calcController) |
-|             |  | browser window |    +----|                                   |
+|             |  | browser window |<---+----|                                   |
 +-------------+  +----------------+    |    +-----------------------------------+
    calc.js  ^        index.html        |                 controller.js
             | updates                  |             
